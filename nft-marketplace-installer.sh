@@ -1,9 +1,9 @@
 #!/bin/sh
 
 #**********************************************
-#          Metaplex Store Installer           *
-# Created By: BlackRanger07                   *
-# Copyright: BlackRanger07 - Oct 2021         *
+#          NFT Marketplace Installer           *
+# Created By: Fyfy.io                  *
+# Copyright: Fyfy.io - Dec 2021         *
 #**********************************************
 
 clear #Start the screen fresh.
@@ -13,7 +13,7 @@ current_dir=$(pwd)
 GITHUB=""
 SITENAME=""
 asset_pfix_new="ASSET_PREFIX="
-asset_pfix_old="ASSET_PREFIX=/metaplex/"
+asset_pfix_old="ASSET_PREFIX=/nft-marketplace/"
 
 #Functions Here
 user_status () {
@@ -29,30 +29,30 @@ filechanges () {
   #Edit packages.json file at line 47
   clear
   #Change the owner name of the repository for Metaplex."
-  sed -i 's/metaplex-foundation/'${GITHUB}'/g' ${current_dir}/metaplex/js/packages/web/package.json
+  sed -i 's/metaplex-foundation/'${GITHUB}'/g' ${current_dir}/nft-marketplace/js/packages/web/package.json
   #Modify Asset Prefix in package.json line 56.
-  sed -i "s|${asset_pfix_old}|${asset_pfix_new}|" ${current_dir}/metaplex/js/packages/web/package.json
+  sed -i "s|${asset_pfix_old}|${asset_pfix_new}|" ${current_dir}/nft-marketplace/js/packages/web/package.json
   #Add wallet address in .env file.
   read -p "Paste the wallet address for the store owner: " WALLET
-  cat > ${current_dir}/metaplex/js/packages/web/.env <<EOF
+  cat > ${current_dir}/nft-marketplace/js/packages/web/.env <<EOF
   REACT_APP_STORE_OWNER_ADDRESS_ADDRESS=${WALLET}
   REACT_APP_STORE_ADDRESS=
 EOF
   #Add CNAME
-  touch ${current_dir}/metaplex/js/packages/web/public/CNAME
+  touch ${current_dir}/nft-marketplace/js/packages/web/public/CNAME
   read -p "Enter your CNAME or website name that will point to github pages: " SITENAME
-  echo ${SITENAME} > ${current_dir}/metaplex/js/packages/web/public/CNAME
+  echo ${SITENAME} > ${current_dir}/nft-marketplace/js/packages/web/public/CNAME
 }
 
 user_status
 
-#Clone the Metaplex Repo from the Users Github repository.
+#Clone the NFT Marketplace Repo from the Users Github repository.
 read -p "Enter your github name: " GITHUB
-if [ ! -d ${current_dir}/metaplex ]; then
-  git clone https://github.com/"${GITHUB}"/metaplex.git
+if [ ! -d ${current_dir}/nft-marketplace ]; then
+  git clone https://github.com/"${GITHUB}"/nft-marketplace.git
 fi
 
-# Prerequisites for Metaplex Store to be installed.
+# Prerequisites for NFT Marketplace to be installed.
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y curl
@@ -75,7 +75,7 @@ fi
 filechanges
 
 #Setup npm, yarn and then deploy.
-cd ${current_dir}/metaplex/js
+cd ${current_dir}/nft-marketplace/js
 npm install -g yarn
 if [ $? = 0 ]; then
   echo "Yarn installed successfully!"
@@ -84,7 +84,7 @@ if [ $? = 0 ]; then
     yarn bootstrap
     if [ $? = 0 ]; then
       clear
-      echo "Metaplex will now be built and deployed. Have your github account and access code ready."
+      echo "NFT Marketplace will now be built and deployed. Have your github account and access code ready."
       yarn build
       if [ $? = 0 ]; then
         cd packages/web
@@ -96,12 +96,12 @@ if [ $? = 0 ]; then
           git config --global user.email "${EMAIL}"
           git config --global user.name "${USER}"
         fi
-        #Deploy the Metaplex site and Go Live.
+        #Deploy the NFT Marketplace and Go Live.
         yarn deploy
         if [ $? = 0 ]; then
           clear
           echo "************************************************************************"
-          echo "* Your metaplex store is now ready to be used at: ${SITENAME}   *"
+          echo "* Your NFT Marketplace is now ready to be used at: ${SITENAME}   *"
           echo "* If you found this installer helpful please support with SOL.         *"
           echo "*                                                                      *"
           echo "*    Donate SOL: 9inpsvQZYiTekRJEuNBLjPjNoQzSCDx9iuHMq3uTzssB          *"
