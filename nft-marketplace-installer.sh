@@ -28,8 +28,8 @@ user_status () {
 filechanges () {
   #Edit packages.json file at line 47
   clear
-  #Change the owner name of the repository for Metaplex."
-  sed -i 's/metaplex-foundation/'${GITHUB}'/g' ${current_dir}/nft-marketplace/js/packages/web/package.json
+  #Change the owner name of the repository for NFT Marketplace."
+  sed -i 's/fyfyio/'${GITHUB}'/g' ${current_dir}/nft-marketplace/js/packages/web/package.json
   #Modify Asset Prefix in package.json line 56.
   sed -i "s|${asset_pfix_old}|${asset_pfix_new}|" ${current_dir}/nft-marketplace/js/packages/web/package.json
   #Add wallet address in .env file.
@@ -104,7 +104,7 @@ if [ $? = 0 ]; then
           echo "* Your NFT Marketplace is now ready to be used at: ${SITENAME}   *"
           echo "* If you found this installer helpful please support with SOL.         *"
           echo "*                                                                      *"
-          echo "*    Donate SOL: 9inpsvQZYiTekRJEuNBLjPjNoQzSCDx9iuHMq3uTzssB          *"
+          echo "*    Donate SOL: 77S3j6r36qF3nLYFGpJrWA1nfPQighfkmiPhNkwGrusE          *"
           echo "************************************************************************"
         fi
       else
