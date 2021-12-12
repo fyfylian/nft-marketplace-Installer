@@ -1,4 +1,4 @@
-# NFT-marketplace Installer
+# NFT Marketplace Installer
 Linux Installer for NFT Marketplace using Solana.
 
 #IMPORTANT! - Run as root user.
