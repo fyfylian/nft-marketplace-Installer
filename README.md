@@ -3,7 +3,7 @@ Linux Installer for NFT Marketplace using Solana.
 
 #IMPORTANT! - Run as root user.
 
-* Fork the fyfylian/nft-marketplace repository to your github.
+* Fork the vamise/nft-marketplace repository to your github.
 * Run the installer. It will clone the nft-marketplace repository from your github and perform necessary changes.
 
 Make the nft-marketplace-Installer.sh executable:
