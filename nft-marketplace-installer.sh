@@ -13,7 +13,7 @@ current_dir=$(pwd)
 GITHUB=""
 SITENAME=""
 asset_pfix_new="ASSET_PREFIX="
-asset_pfix_old="ASSET_PREFIX=/nft-marketplace/"
+asset_pfix_old="ASSET_PREFIX=/fyfy-nft-marketplace/"
 
 #Functions Here
 user_status () {
@@ -29,27 +29,27 @@ filechanges () {
   #Edit packages.json file at line 47
   clear
   #Change the owner name of the repository for NFT Marketplace."
-  sed -i 's/fyfyio/'${GITHUB}'/g' ${current_dir}/nft-marketplace/js/packages/web/package.json
+  sed -i 's/fyfyio/'${GITHUB}'/g' ${current_dir}/fyfy-nft-marketplace/js/packages/web/package.json
   #Modify Asset Prefix in package.json line 56.
-  sed -i "s|${asset_pfix_old}|${asset_pfix_new}|" ${current_dir}/nft-marketplace/js/packages/web/package.json
+  sed -i "s|${asset_pfix_old}|${asset_pfix_new}|" ${current_dir}/fyfy-nft-marketplace/js/packages/web/package.json
   #Add wallet address in .env file.
   read -p "Paste the wallet address for the store owner: " WALLET
-  cat > ${current_dir}/nft-marketplace/js/packages/web/.env <<EOF
+  cat > ${current_dir}/fyfy-nft-marketplace/js/packages/web/.env <<EOF
   REACT_APP_STORE_OWNER_ADDRESS_ADDRESS=${WALLET}
   REACT_APP_STORE_ADDRESS=
 EOF
   #Add CNAME
-  touch ${current_dir}/nft-marketplace/js/packages/web/public/CNAME
+  touch ${current_dir}/fyfy-nft-marketplace/js/packages/web/public/CNAME
   read -p "Enter your CNAME or website name that will point to github pages: " SITENAME
-  echo ${SITENAME} > ${current_dir}/nft-marketplace/js/packages/web/public/CNAME
+  echo ${SITENAME} > ${current_dir}/fyfy-nft-marketplace/js/packages/web/public/CNAME
 }
 
 user_status
 
 #Clone the NFT Marketplace Repo from the Users Github repository.
 read -p "Enter your github name: " GITHUB
-if [ ! -d ${current_dir}/nft-marketplace ]; then
-  git clone https://github.com/"${GITHUB}"/nft-marketplace.git
+if [ ! -d ${current_dir}/fyfy-nft-marketplace ]; then
+  git clone https://github.com/"${GITHUB}"/fyfy-nft-marketplace.git
 fi
 
 # Prerequisites for NFT Marketplace to be installed.
@@ -75,7 +75,7 @@ fi
 filechanges
 
 #Setup npm, yarn and then deploy.
-cd ${current_dir}/nft-marketplace/js
+cd ${current_dir}/fyfy-nft-marketplace/js
 npm install -g yarn
 if [ $? = 0 ]; then
   echo "Yarn installed successfully!"
